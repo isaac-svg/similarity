@@ -20,6 +20,7 @@
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-tabs": "^1.0.4",
     "@total-typescript/ts-reset": "^0.5.1",
+    "@types/prismjs": "^1.26.2",
     "@upstash/ratelimit": "^0.4.4",
     "@upstash/redis": "^1.24.1",
     "class-variance-authority": "^0.7.0",
@@ -35,6 +36,7 @@
     "openai": "^4.14.1",
     "prism-react-renderer": "^2.1.0",
     "prisma": "^5.5.2",
+    "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
@@ -45,6 +47,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -53,6 +56,7 @@
     "eslint-config-next": "14.0.0",
     "postcss": "^8",
     "tailwindcss": "^3",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"
   }
 }
