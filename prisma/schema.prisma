@@ -6,6 +6,87 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+  relationMode = "prisma" 
+}
+
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String @db.ObjectId
+  providerType       String
+  providerId         String
+  providerAccountId  String
+  refreshToken       String?
+  accessToken        String?
+  accessTokenExpires DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  user User      @relation(fields: [userId], references: [id], onDelete:Cascade)
+
+  @@unique([providerId, providerAccountId])
+}
+
+model Session {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String @db.ObjectId
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  ApiKey        ApiKey[]
+  apikeyId      String?
+}
+
+model ApiKey {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  key String @unique
+  enabled Boolean @default(true)
+  user User @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+
+  requests ApiRequest[]
+  @@unique([userId, key, enabled])
+}
+
+model ApiRequest{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  status  Int
+  method String
+  timestamp DateTime @default(now())
+  duration Int
+  path String
+
+  usedApiKey String
+
+  ApiKey ApiKey @relation(fields:[apikeyId],references:[id])
+  apikeyId String @db.ObjectId
+
+  @@index([apikeyId, timestamp])
+}
+
+model VerificationRequest {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
 }
