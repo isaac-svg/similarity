@@ -17,7 +17,7 @@ const Navbar = async () => {
         <Link href='/' className={buttonVariants({ variant: 'link' })}>
           Text Similarity v1.0
         </Link>
-
+        
         <div className='md:hidden'>
           <ThemeToggle />
         </div>
