@@ -56,7 +56,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         method: req.method as string,
         path: req.url as string,
         status: 200,
-        apiKeyId: validApiKey.id,
+        apikeyId: validApiKey.id,
         usedApiKey: validApiKey.key,
       },
     })
