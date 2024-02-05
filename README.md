@@ -4,10 +4,11 @@
 
 - Rate Limited API routes
 - Protection of sensitive routes
-- Google authentication
+- Google/Twitter authentication
 - Typescript
 - A complete API key system to create & revoke user keys
 
+## Tools
 - Radix UI Primitives
 - Tailwind CSS
 - Fonts with next/font
