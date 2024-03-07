@@ -30,11 +30,7 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login',
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret:process.env.GOOGLE_CLIENT_SECRET as string,
-      version:"2.0"
-    }),
+    GoogleProvider(getGoogleCredentials()),
     // twitterProvider({
     //   clientId:process.env.TWITTER_ID as string,
     //   clientSecret:process.env.TWITTER_SECRET as string,
