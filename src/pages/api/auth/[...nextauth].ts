@@ -3,7 +3,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { NextAuthOptions } from 'next-auth'
 import NextAuth from 'next-auth/next';
 import GoogleProvider from 'next-auth/providers/google'
-import twitterProvider from 'next-auth/providers/twitter'
+// import twitterProvider from 'next-auth/providers/twitter'
 
 
 function getGoogleCredentials(): { clientId: string; clientSecret: string } {
